@@ -6,18 +6,22 @@ using static Employee;
 
 [TestFixture]
 public class EmployeeTests
+
 {
+    public Employee employee { get; set; }
+    [OneTimeSetUp]
+    public void SetUp ()
+    {
+         employee = new Employee("milovan", 30, 5);
+    }
 	[Test]
     public void InitialTest()
 	{
-		var employee = new Employee("milovan",30,5);
-
-		ClassicAssert.AreEqual(200000, employee.BankovniRacun);
+        ClassicAssert.AreEqual(200000, employee.BankovniRacun);
 	}
     [Test]
     public void TestSpend()
-    {
-        var employee = new Employee("milovan", 30, 5);
+    {        
 
         employee.Spend(200001);
         ClassicAssert.AreEqual(200000,employee.BankovniRacun);
@@ -26,8 +30,7 @@ public class EmployeeTests
 
     [Test]
     public void TestSpend2() {
-
-        var employee = new Employee("milovan", 30, 5);
+        
         var spendamount = 23453;
         employee.Spend(spendamount);
         var expected = 200000 - 23453;
@@ -41,7 +44,7 @@ public class EmployeeTests
         EmployeeDbFake.employeeList = [];
 
         //act
-        var employee = new Employee("milovan", 30, 5);
+        var employe0 = new Employee("milovan", 30, 5);    
         var employe1 = new Employee("ivana", 30, 5);
         var employe2 = new Employee("marko", 30, 5);
 
